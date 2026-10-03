@@ -934,23 +934,24 @@ ul {
 }
 
 .org-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    max-width: 960px;
+    display: flex;
+    gap: 20px;
+    max-width: 900px;
     margin: 0 auto;
     align-items: center;
 }
 
 .org-card {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-start;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 22px 20px;
+    padding: 20px 18px;
     transition: var(--transition);
+    flex: 1;
+    min-width: 0;
 }
 
 .org-card:hover {
@@ -959,21 +960,21 @@ ul {
 }
 
 .org-icon {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
     background: var(--accent-gradient);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: #fff;
     margin-top: 2px;
 }
 
 .org-details h3 {
-    font-size: 1.05rem;
+    font-size: 1rem;
     margin-bottom: 3px;
     color: var(--text);
 }
@@ -981,39 +982,41 @@ ul {
 .org-name {
     color: var(--accent-light);
     font-weight: 500;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     margin-bottom: 3px;
 }
 
 .org-period {
     color: var(--text-dark);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     margin-bottom: 8px;
 }
 
 .org-desc {
     color: var(--text-muted);
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     line-height: 1.5;
 }
 
 .org-photos {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 8px;
+    width: 220px;
+    min-width: 220px;
 }
 
 .org-photos img {
     width: 100%;
-    height: 120px;
+    height: 80px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid var(--border);
     transition: var(--transition);
 }
 
 .org-photos img:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
     border-color: var(--accent);
 }
 
@@ -1132,10 +1135,17 @@ ul {
 
 @media (max-width: 768px) {
     .org-wrapper {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .org-photos {
+        width: 100%;
+        min-width: 0;
+        grid-template-columns: 1fr 1fr;
     }
 
     .org-photos img {
-        height: 100px;
+        height: 90px;
     }
 }
