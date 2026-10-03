@@ -1010,14 +1010,14 @@ ul {
 .org-photos {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    width: 300px;
-    min-width: 300px;
+    gap: 12px;
+    width: 360px;
+    min-width: 360px;
 }
 
 .org-photos img {
     width: 100%;
-    height: 115px;
+    height: 140px;
     object-fit: cover;
     border-radius: 8px;
     border: 1px solid var(--border);
@@ -1242,7 +1242,7 @@ ul {
     }
 
     .org-photos img {
-        height: 110px;
+        height: 130px;
     }
 }
 
