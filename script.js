@@ -70,6 +70,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('contextmenu', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
+document.querySelectorAll('img').forEach(img => {
+    img.setAttribute('draggable', 'false');
+});
+
+const lightbox = document.createElement('div');
+lightbox.id = 'lightbox';
+lightbox.innerHTML = `
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img src="" alt="Preview">
+`;
+document.body.appendChild(lightbox);
+
+const lightboxImg = lightbox.querySelector('img');
+const closeBtn = lightbox.querySelector('.lightbox-close');
+
+function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.cert-img-wrap img, .org-photos img, .profile-img').forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLightbox(img.src, img.alt);
+    });
+});
+
+closeBtn.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+});
+
 const style = document.createElement('style');
 style.textContent = `
     .reveal {
