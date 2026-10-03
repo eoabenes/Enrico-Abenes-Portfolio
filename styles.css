@@ -1007,19 +1007,27 @@ ul {
     line-height: 1.5;
 }
 
+.org-wrapper {
+    display: flex;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: center;
+}
+
 .org-photos {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    width: 360px;
-    min-width: 360px;
+    width: 420px;
+    min-width: 420px;
 }
 
 .org-photos img {
     width: 100%;
-    height: 140px;
+    height: 160px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 10px;
     border: 1px solid var(--border);
     transition: var(--transition);
     cursor: pointer;
@@ -1236,13 +1244,18 @@ ul {
 }
 
 @media (max-width: 768px) {
+    .org-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
     .org-photos {
         width: 100%;
         min-width: 0;
     }
 
     .org-photos img {
-        height: 130px;
+        height: 140px;
     }
 }
 
