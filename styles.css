@@ -353,33 +353,33 @@ ul {
 }
 
 .section {
-    padding: 64px 0;
+    padding: 56px 0;
 }
 
 .section-title {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+    font-size: clamp(1.5rem, 3.2vw, 1.9rem);
     font-weight: 700;
     text-align: center;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: var(--text);
 }
 
 .section-title::after {
     content: '';
     display: block;
-    width: 50px;
+    width: 44px;
     height: 3px;
     background: var(--accent-gradient);
-    margin: 12px auto 0;
+    margin: 10px auto 0;
     border-radius: 2px;
 }
 
 .section-subtitle {
     text-align: center;
     color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 28px;
+    font-size: 0.88rem;
+    margin-bottom: 24px;
 }
 
 .about {
@@ -393,8 +393,9 @@ ul {
 
 .about-text p {
     color: var(--text-muted);
-    margin-bottom: 12px;
-    font-size: 1rem;
+    margin-bottom: 10px;
+    font-size: 0.98rem;
+    line-height: 1.65;
 }
 
 .about-text strong {
@@ -408,11 +409,14 @@ ul {
 }
 
 .highlight-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 24px 18px;
-    text-align: center;
+    padding: 18px 16px;
+    text-align: left;
     transition: var(--transition);
 }
 
@@ -423,31 +427,33 @@ ul {
 }
 
 .highlight-card i {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     color: var(--accent);
-    margin-bottom: 12px;
+    margin-top: 2px;
+    min-width: 24px;
 }
 
 .highlight-card h3 {
-    font-size: 1rem;
-    margin-bottom: 6px;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
     color: var(--text);
 }
 
 .highlight-card p {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
+    line-height: 1.4;
 }
 
 .education-card {
     display: flex;
-    gap: 22px;
-    align-items: flex-start;
+    gap: 20px;
+    align-items: center;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 28px;
-    max-width: 640px;
+    padding: 24px 28px;
+    max-width: 680px;
     margin: 0 auto;
     transition: var(--transition);
 }
@@ -458,35 +464,35 @@ ul {
 }
 
 .edu-icon {
-    width: 52px;
-    height: 52px;
-    min-width: 52px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
     background: var(--accent-gradient);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #fff;
 }
 
 .edu-details h3 {
-    font-size: 1.15rem;
-    margin-bottom: 4px;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
     color: var(--text);
 }
 
 .edu-major {
     color: var(--accent-light);
     font-weight: 500;
-    margin-bottom: 6px;
-    font-size: 0.95rem;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
 }
 
 .edu-school,
 .edu-period {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .certifications {
@@ -705,13 +711,13 @@ ul {
 
 .org-card {
     display: flex;
-    gap: 22px;
-    align-items: flex-start;
+    gap: 20px;
+    align-items: center;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 28px;
-    max-width: 640px;
+    padding: 24px 28px;
+    max-width: 680px;
     margin: 0 auto;
     transition: var(--transition);
 }
@@ -722,40 +728,41 @@ ul {
 }
 
 .org-icon {
-    width: 52px;
-    height: 52px;
-    min-width: 52px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
     background: var(--accent-gradient);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #fff;
 }
 
 .org-details h3 {
-    font-size: 1.15rem;
-    margin-bottom: 4px;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
     color: var(--text);
 }
 
 .org-name {
     color: var(--accent-light);
     font-weight: 500;
-    margin-bottom: 4px;
-    font-size: 0.95rem;
+    margin-bottom: 2px;
+    font-size: 0.9rem;
 }
 
 .org-period {
     color: var(--text-dark);
-    font-size: 0.85rem;
-    margin-bottom: 10px;
+    font-size: 0.82rem;
+    margin-bottom: 8px;
 }
 
 .org-desc {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
 }
 
 .contact {
@@ -915,14 +922,14 @@ ul {
         display: flex;
     }
     .section {
-        padding: 48px 0;
+        padding: 44px 0;
     }
     .education-card,
     .org-card {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        text-align: center;
-        padding: 24px;
+        text-align: left;
+        padding: 20px;
     }
     .certs-grid {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
