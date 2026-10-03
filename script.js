@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     const revealElements = document.querySelectorAll(
-        '.highlight-card, .cert-card, .course-card, .education-card, .leadership-card, .project-card, .contact-card'
+        '.highlight-card, .cert-card, .course-card, .education-card, .org-card, .project-card, .contact-card'
     );
 
     revealElements.forEach(el => {
