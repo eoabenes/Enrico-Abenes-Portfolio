@@ -590,7 +590,6 @@ ul {
     border-color: var(--accent);
     transform: translateY(-4px);
     box-shadow: var(--shadow);
-    color: var(--text);
 }
 
 .cert-img-wrap {
@@ -598,6 +597,7 @@ ul {
     height: 140px;
     overflow: hidden;
     background: #0a1628;
+    cursor: pointer;
 }
 
 .cert-img-wrap img {
@@ -606,6 +606,7 @@ ul {
     object-fit: cover;
     object-position: top center;
     transition: transform 0.35s ease;
+    pointer-events: auto;
 }
 
 .cert-card:hover .cert-img-wrap img {
@@ -614,6 +615,14 @@ ul {
 
 .cert-info {
     padding: 12px 14px 14px;
+    display: block;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.cert-info:hover {
+    background: rgba(30, 144, 255, 0.06);
+    color: var(--text);
 }
 
 .cert-info h3 {
@@ -1021,13 +1030,41 @@ ul {
 }
 
 .project-actions {
-    margin-top: 20px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.btn-manuscript {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    background: rgba(30, 144, 255, 0.1);
+    border: 1px solid rgba(30, 144, 255, 0.35);
+    border-radius: 8px;
+    color: var(--accent-light);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.btn-manuscript:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 144, 255, 0.3);
+}
+
+.btn-manuscript i {
+    font-size: 1rem;
 }
 
 #lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(5, 12, 24, 0.92);
+    background: rgba(5, 12, 24, 0.93);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1054,15 +1091,15 @@ ul {
 
 .lightbox-close {
     position: absolute;
-    top: 18px;
+    top: 16px;
     right: 22px;
     background: none;
     border: none;
     color: #fff;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     cursor: pointer;
     line-height: 1;
-    opacity: 0.8;
+    opacity: 0.85;
     transition: opacity 0.2s ease;
     z-index: 10000;
 }

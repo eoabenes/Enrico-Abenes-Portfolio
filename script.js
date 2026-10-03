@@ -70,16 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Disable right-click & drag on images
 document.addEventListener('contextmenu', (e) => {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-    }
+    if (e.target.tagName === 'IMG') e.preventDefault();
 });
+document.querySelectorAll('img').forEach(img => img.setAttribute('draggable', 'false'));
 
-document.querySelectorAll('img').forEach(img => {
-    img.setAttribute('draggable', 'false');
-});
-
+// Lightbox
 const lightbox = document.createElement('div');
 lightbox.id = 'lightbox';
 lightbox.innerHTML = `
@@ -103,10 +100,11 @@ function closeLightbox() {
     document.body.style.overflow = '';
 }
 
-document.querySelectorAll('.cert-img-wrap img, .org-photos img, .profile-img').forEach(img => {
-    img.style.cursor = 'pointer';
+// Only cert images + org photos open lightbox
+document.querySelectorAll('.cert-img-wrap img, .org-photos img').forEach(img => {
     img.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation();
         openLightbox(img.src, img.alt);
     });
 });
@@ -115,7 +113,6 @@ closeBtn.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
 });
-
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
 });
