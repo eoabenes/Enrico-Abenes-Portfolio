@@ -15,68 +15,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const navbar = document.getElementById('navbar');
-
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        if (window.scrollY > 50) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
     });
 
     const sections = document.querySelectorAll('section[id]');
-
     function highlightNav() {
         const scrollY = window.scrollY + 100;
-
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-
-            if (navLink) {
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    navLink.classList.add('active');
-                } else {
-                    navLink.classList.remove('active');
-                }
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            const id = section.getAttribute('id');
+            const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+            if (link) {
+                if (scrollY >= top && scrollY < top + height) link.classList.add('active');
+                else link.classList.remove('active');
             }
         });
     }
-
     window.addEventListener('scroll', highlightNav);
 
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
-    };
-
+    // Reveal animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('visible');
         });
-    }, observerOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    const revealElements = document.querySelectorAll(
-        '.highlight-card, .cert-card, .course-card, .education-card, .org-card, .project-card, .contact-card'
-    );
-
-    revealElements.forEach(el => {
-        el.classList.add('reveal');
-        observer.observe(el);
-    });
+    document.querySelectorAll('.highlight-card, .cert-card, .course-card, .education-card, .org-card, .project-card, .contact-card')
+        .forEach(el => {
+            el.classList.add('reveal');
+            observer.observe(el);
+        });
 });
 
-// Disable right-click & drag on images
+// ===== Image protection =====
 document.addEventListener('contextmenu', (e) => {
     if (e.target.tagName === 'IMG') e.preventDefault();
 });
 document.querySelectorAll('img').forEach(img => img.setAttribute('draggable', 'false'));
 
-// Lightbox
+// ===== Image Lightbox =====
 const lightbox = document.createElement('div');
 lightbox.id = 'lightbox';
 lightbox.innerHTML = `
@@ -86,7 +66,7 @@ lightbox.innerHTML = `
 document.body.appendChild(lightbox);
 
 const lightboxImg = lightbox.querySelector('img');
-const closeBtn = lightbox.querySelector('.lightbox-close');
+const lightboxClose = lightbox.querySelector('.lightbox-close');
 
 function openLightbox(src, alt) {
     lightboxImg.src = src;
@@ -100,23 +80,63 @@ function closeLightbox() {
     document.body.style.overflow = '';
 }
 
-// Only cert images + org photos open lightbox
-document.querySelectorAll('.cert-img-wrap img, .org-photos img').forEach(img => {
-    img.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        openLightbox(img.src, img.alt);
+// Cert cards (whole card) + org photos + profile pic
+document.querySelectorAll('.cert-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        if (img) openLightbox(img.src, img.alt);
     });
 });
 
-closeBtn.addEventListener('click', closeLightbox);
+document.querySelectorAll('.org-photos img, .profile-img').forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
 });
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
+
+// ===== PDF Modal (Resume + Manuscript) =====
+const pdfModal = document.getElementById('pdf-modal');
+const pdfFrame = pdfModal.querySelector('iframe');
+const pdfClose = pdfModal.querySelector('.pdf-close');
+
+function openPdf(src) {
+    pdfFrame.src = src;
+    pdfModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePdf() {
+    pdfModal.classList.remove('active');
+    pdfFrame.src = '';
+    document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.pdf-preview').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openPdf(btn.getAttribute('data-pdf'));
+    });
 });
 
+pdfClose.addEventListener('click', closePdf);
+pdfModal.addEventListener('click', (e) => {
+    if (e.target === pdfModal) closePdf();
+});
+
+// Esc closes both
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLightbox();
+        closePdf();
+    }
+});
+
+// Reveal CSS
 const style = document.createElement('style');
 style.textContent = `
     .reveal {
