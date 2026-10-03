@@ -77,10 +77,10 @@ function openLightbox(src, alt) {
 
 function closeLightbox() {
     lightbox.classList.remove('active');
+    lightboxImg.src = '';
     document.body.style.overflow = '';
 }
 
-// Cert cards (whole card) + org photos + profile pic
 document.querySelectorAll('.cert-card').forEach(card => {
     card.style.cursor = 'pointer';
     card.addEventListener('click', () => {
@@ -99,18 +99,20 @@ lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
 });
 
-// ===== PDF Modal (Resume + Manuscript) =====
+// ===== PDF Modal =====
 const pdfModal = document.getElementById('pdf-modal');
-const pdfFrame = pdfModal.querySelector('iframe');
-const pdfClose = pdfModal.querySelector('.pdf-close');
+const pdfFrame = pdfModal ? pdfModal.querySelector('iframe') : null;
+const pdfClose = pdfModal ? pdfModal.querySelector('.pdf-close') : null;
 
 function openPdf(src) {
+    if (!pdfModal || !pdfFrame) return;
     pdfFrame.src = src;
     pdfModal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
 function closePdf() {
+    if (!pdfModal || !pdfFrame) return;
     pdfModal.classList.remove('active');
     pdfFrame.src = '';
     document.body.style.overflow = '';
@@ -119,16 +121,21 @@ function closePdf() {
 document.querySelectorAll('.pdf-preview').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
-        openPdf(btn.getAttribute('data-pdf'));
+        e.stopPropagation();
+        const src = btn.getAttribute('data-pdf');
+        if (src) openPdf(src);
     });
 });
 
-pdfClose.addEventListener('click', closePdf);
-pdfModal.addEventListener('click', (e) => {
-    if (e.target === pdfModal) closePdf();
-});
+if (pdfClose) {
+    pdfClose.addEventListener('click', closePdf);
+}
+if (pdfModal) {
+    pdfModal.addEventListener('click', (e) => {
+        if (e.target === pdfModal) closePdf();
+    });
+}
 
-// Esc closes both
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeLightbox();

@@ -1062,23 +1062,27 @@ ul {
     font-size: 1rem;
 }
 
-#lightbox {
+#lightbox,
+#pdf-modal {
     position: fixed;
     inset: 0;
-    background: rgba(5, 12, 24, 0.93);
+    background: rgba(5, 12, 24, 0.94);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.25s ease, visibility 0.25s ease;
     padding: 20px;
 }
 
-#lightbox.active {
+#lightbox.active,
+#pdf-modal.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 #lightbox img {
@@ -1090,44 +1094,6 @@ ul {
     object-fit: contain;
 }
 
-.lightbox-close {
-    position: absolute;
-    top: 16px;
-    right: 22px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 2.4rem;
-    cursor: pointer;
-    line-height: 1;
-    opacity: 0.85;
-    transition: opacity 0.2s ease;
-    z-index: 10000;
-}
-
-.lightbox-close:hover {
-    opacity: 1;
-}
-
-#pdf-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(5, 12, 24, 0.94);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-    padding: 30px 20px;
-}
-
-#pdf-modal.active {
-    opacity: 1;
-    visibility: visible;
-}
-
 #pdf-modal iframe {
     width: min(1000px, 92vw);
     height: min(85vh, 900px);
@@ -1137,6 +1103,7 @@ ul {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
+.lightbox-close,
 .pdf-close {
     position: absolute;
     top: 14px;
@@ -1151,6 +1118,7 @@ ul {
     z-index: 10000;
 }
 
+.lightbox-close:hover,
 .pdf-close:hover {
     opacity: 1;
 }
